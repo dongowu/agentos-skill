@@ -66,24 +66,19 @@ gate:done       #059669    All gates passed
 
 ---
 
-## Sprint Setup
+## Project Bootstrapping
 
-When starting a new sprint:
+When delegated from `idea-to-plan.md`, execute the following:
 
-```bash
-# Create milestone
-gh milestone create \
-  --title "Sprint 1: [goal]" \
-  --description "[what we're trying to achieve]" \
-  --due-date [date]
-
-# Create issues for all P0 tasks
-gh issue create \
-  --title "[Task title]" \
-  --body "$(cat templates/issue.md)" \
-  --label "P0,feature,agent:backend" \
-  --milestone "Sprint 1: [goal]"
-```
+1. **Repo Setup:** `gh repo create [name] --public/private --confirm` (if repo doesn't exist).
+2. **Label Setup:** Initialize all Priority, Type, Agent, and Gate labels.
+3. **Milestone Setup:** Create the MVP Milestone based on the plan.
+4. **Task Injection:**
+   - Convert the "Task Breakdown" into GitHub Issues.
+   - Use `templates/issue.md` for the body.
+   - Map priorities (P0/P1/P2) and types (feature/bug/chore).
+   - Assign the initial `agent` label.
+5. **Initial Hook:** Run `hooks/on-task-start.md` only after all issues are created.
 
 ---
 

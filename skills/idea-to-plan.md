@@ -93,16 +93,16 @@ Tomorrow, do exactly this: [Specific, concrete, unambiguous action]
 
 ---
 
-### Step 3: Confirm and Proceed
+### Step 3: Confirm and Delegate
 
 After generating the plan, ask:
 > "Does this look right? Say **yes** to start, or tell me what to change."
 
-On confirmation:
-1. Create GitHub repository (if `gh` CLI available)
-2. Create GitHub Milestone for MVP
-3. Create all Tasks as GitHub Issues using `templates/issue.md`
-4. Run `hooks/on-task-start.md` before first task
+On confirmation, **DELEGATE setup to Sprint Engine**:
+1. Hand off the [Project Name], [Task Breakdown], and [MVP Scope] to `sprint-engine.md`.
+2. Instruction for Sprint Engine: "Bootstrap project [Name] with these issues and milestones."
+3. Sprint Engine will handle repository creation, milestones, and issues using `templates/issue.md`.
+4. Once setup is confirmed by Sprint Engine, the first task enters the **Ready Gate** phase.
 
 ---
 

@@ -101,6 +101,18 @@ To continue, choose one:
 3. "economy mode" — continue with cheapest models only
 ```
 
+### Budget Exhaustion & Gating
+
+To prevent deadlocks where a task is blocked by a gate but out of budget:
+
+1. **Gate Emergency Fund:** If a task is at the `Code Gate` or `Acceptance Gate` and budget is < 1%, the user is prompted for a "Quality Override" to allocate $1.00 specifically to finish verification.
+2. **Economy Routing:** Automatically switch to `DeepSeek V3` or `Claude Haiku` for all Gate Verification steps if session budget is < 15%.
+
+**Gating Checks:**
+- Before any Gate (Ready, Code, Acceptance), check `Cumulative Cost`.
+- If `Cumulative Cost > 95%` and NOT in Economy Mode, force Economy Mode.
+- If `Cumulative Cost > 100%`, hard stop applies even to Gate verification.
+
 **Never continue execution past the hard stop without explicit user confirmation.**
 
 ---

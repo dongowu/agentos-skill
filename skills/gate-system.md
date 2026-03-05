@@ -32,7 +32,8 @@ Gates are PHYSICAL BLOCKERS — not suggestions, not warnings. A failed gate sto
 
 ```
 □ Task has at least 2 Acceptance Criteria defined
-□ All interface dependencies have a signed Protocol Contract
+□ [PROTOCOL LOCK] All interface dependencies have a SIGNED Contract (CTR-XXX)
+□ [COST GUARD] Session budget has > 10% remaining
 □ Task description is unambiguous (no "etc.", no "and so on")
 □ Priority is set (P0 / P1 / P2)
 □ Estimated effort is set
@@ -55,7 +56,7 @@ This task cannot start until all items are checked.
 **If all checks pass:**
 ```markdown
 ## ✅ Ready Gate PASSED
-Task: [task name]
+Task: [task name] | Contract: CTR-XXX Signed ✅ | Budget: OK
 Proceeding to execution.
 ```
 
@@ -69,7 +70,8 @@ Proceeding to execution.
 
 ```
 □ Unit test coverage ≥ 80%
-□ All API responses match the signed Protocol Contract schema
+□ [PROTOCOL LOCK] All API responses match the signed CTR-XXX schema
+□ [COST GUARD] Task cost is within 150% of its initial estimate
 □ No unhandled errors or promise rejections
 □ No hardcoded secrets or credentials
 □ No obvious race conditions in async code
