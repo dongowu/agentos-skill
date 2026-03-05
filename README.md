@@ -49,17 +49,24 @@ Every stage has explicit checks. Failed gates block progress until fixed.
 
 ```bash
 # Option A: git submodule
-git submodule add https://github.com/yourusername/agentos-skill .agentos
+git submodule add https://github.com/dongowu/agentos-skill .agentos
 
 # Option B: clone directly
-git clone https://github.com/yourusername/agentos-skill .agentos
+git clone https://github.com/dongowu/agentos-skill .agentos
 ```
 
 2) Use Claude Skill standard layout (recommended)
 
 ```bash
-mkdir -p .claude/skills/agentos
-cp -r .agentos/SKILL.md .agentos/skills .agentos/hooks .agentos/templates .claude/skills/agentos/
+mkdir -p .claude/skills
+cp -r .agentos/.claude/skills/* .claude/skills/
+```
+
+PowerShell equivalent:
+
+```powershell
+New-Item -ItemType Directory -Force .claude/skills | Out-Null
+Copy-Item -Recurse -Force .agentos/.claude/skills/* .claude/skills/
 ```
 
 Then invoke directly in Claude Code:
@@ -120,7 +127,7 @@ Add this to `.cursor/rules`:
 ### OpenClaw
 
 ```bash
-claw skill install github:yourusername/agentos-skill
+claw skill install github:dongowu/agentos-skill
 claw "I want to build a customer feedback tool"
 ```
 
@@ -144,6 +151,7 @@ agentos-skill/
     pr.md
     contract.json
     sprint-report.md
+    gate-report.md
   .claude/skills/
     agentos/SKILL.md
     agentos-idea-to-plan/SKILL.md
@@ -198,4 +206,4 @@ If you submit a PR, include the problem being solved, expected behavior, and evi
 
 ## License
 
-MIT.
+Apache-2.0.

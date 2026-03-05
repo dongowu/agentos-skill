@@ -37,7 +37,7 @@ Store this file at `.claude/skills/agentos/SKILL.md`, then invoke:
 
 ### OpenClaw
 ```bash
-claw skill install github:yourusername/agentos-skill
+claw skill install github:dongowu/agentos-skill
 claw "I want to build a customer feedback tool"
 ```
 
@@ -123,10 +123,10 @@ Hooks are instructions that fire automatically at key moments:
 
 ```bash
 # Clone into your project root
-git clone https://github.com/yourusername/agentos-skill .agentos
+git clone https://github.com/dongowu/agentos-skill .agentos
 
 # Or add as git submodule
-git submodule add https://github.com/yourusername/agentos-skill .agentos
+git submodule add https://github.com/dongowu/agentos-skill .agentos
 ```
 
 Then reference in your AI tool config.
@@ -136,18 +136,26 @@ For Claude Code project scope, recommended layout:
 ```text
 .claude/
   skills/
-    agentos/
-      SKILL.md
-      skills/
-      hooks/
-      templates/
+    agentos/SKILL.md
+    agentos-idea-to-plan/SKILL.md
+    agentos-gate-system/SKILL.md
+    agentos-protocol-lock/SKILL.md
+    agentos-cost-guard/SKILL.md
+    agentos-sprint-engine/SKILL.md
 ```
 
 Example setup:
 
 ```bash
-mkdir -p .claude/skills/agentos
-cp -r SKILL.md skills hooks templates .claude/skills/agentos/
+mkdir -p .claude/skills
+cp -r .agentos/.claude/skills/* .claude/skills/
+```
+
+PowerShell equivalent:
+
+```powershell
+New-Item -ItemType Directory -Force .claude/skills | Out-Null
+Copy-Item -Recurse -Force .agentos/.claude/skills/* .claude/skills/
 ```
 
 Alternative config for tools that support direct skill references:
@@ -168,7 +176,7 @@ skills:
 
 | Tool | Status | Notes |
 |------|--------|-------|
-| Claude Code | ✅ | Full support via `--skill` flag |
+| Claude Code | ✅ | Full support via project skills (`/agentos`) or `--skill` |
 | OpenClaw | ✅ | Native Skill system |
 | Codex CLI | ✅ | Via `--instructions` flag |
 | Gemini CLI | ✅ | Via `--context` flag |
@@ -179,4 +187,4 @@ skills:
 
 ## License
 
-MIT — free to use, modify, and distribute.
+Apache-2.0 — free to use, modify, and distribute.
