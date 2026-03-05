@@ -1,0 +1,73 @@
+{
+  "contract_id": "CTR-XXX",
+  "name": "service-name-v1.0",
+  "version": "1.0.0",
+  "status": "draft",
+  "created_at": "YYYY-MM-DD HH:MM",
+  "signed_at": null,
+  "parties": {
+    "producer": "backend-agent",
+    "consumers": ["frontend-agent"]
+  },
+  "signatures": {},
+  "base_url": "/api/v1",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/resource",
+      "description": "Create a new resource",
+      "request": {
+        "content_type": "application/json",
+        "body": {
+          "field_name": {
+            "type": "string",
+            "required": true,
+            "description": "Description of field"
+          },
+          "optional_field": {
+            "type": "number",
+            "required": false,
+            "description": "Optional field"
+          }
+        }
+      },
+      "response": {
+        "success": {
+          "status": 201,
+          "body": {
+            "id": { "type": "string" },
+            "created_at": { "type": "timestamp" }
+          }
+        },
+        "errors": [
+          { "status": 400, "reason": "Invalid input" },
+          { "status": 401, "reason": "Unauthorized" }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/resource/:id",
+      "description": "Get a resource by ID",
+      "request": {
+        "params": {
+          "id": { "type": "string", "required": true }
+        }
+      },
+      "response": {
+        "success": {
+          "status": 200,
+          "body": {
+            "id": { "type": "string" },
+            "field_name": { "type": "string" }
+          }
+        },
+        "errors": [
+          { "status": 404, "reason": "Not found" }
+        ]
+      }
+    }
+  ],
+  "breaking_change_policy": "semver-major",
+  "notes": "Any additional context about this contract"
+}
